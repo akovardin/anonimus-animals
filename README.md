@@ -2,4 +2,8 @@
 
 Делаем анонимных животных как в гугл доках, только красивее
 
-## Звпуск
+## Запуск
+
+```
+docker run -d -v /some/data:/app/data -p 8888:8000 registry.gitflic.ru/project/kovardin/anonimus-animals/anonimus-animals:latest
+```

@@ -11,15 +11,15 @@ tasks:
     cmds:
       - docker build -t registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest -f Dockerfile .
 
-  docker-tag:
-    cmds:
-      - docker tag {{ .SERVICE_NAME }}:latest registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
-
   docker-publish:
     cmds:
       - docker push registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
 
   docker-run:
     cmds:
-      - docker run --name {{ .SERVICE_NAME }} registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
+      - docker run -d -v /Users/artem/projects/anonimus-animals/data:/app/data -p 8888:8000 registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
 
+  git-push:
+    cmds:
+      - git push origin master
+      - git push gitflic master

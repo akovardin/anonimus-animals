@@ -39,10 +39,10 @@ async fn main() {
         )
         .with_state(state);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 8000));
     let tcp = TcpListener::bind(&addr).await.unwrap();
 
-    println!("start server on http://127.0.0.1:8000");
+    println!("start server on http://0.0.0.0:8000");
 
     axum::serve(tcp, router).await.unwrap();
 }

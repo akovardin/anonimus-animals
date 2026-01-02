@@ -1,5 +1,6 @@
 ### list
-GET http://127.0.0.1:8000/animals
+# GET http://127.0.0.1:8000/animals
+GET http://127.0.0.1:8888/animals
 
 ### add
 POST http://127.0.0.1:8000/animals
