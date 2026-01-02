@@ -1,0 +1,20 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  SERVICE_NAME: anonimus-animals
+
+tasks:
+  docker-build:
+    cmds:
+      - docker build -t registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest -f Dockerfile .
+
+  docker-run:
+    cmds:
+      - docker run --name {{ .SERVICE_NAME }} registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
+
+
+
+# docker run registry.gitflic.ru/project/kovardin/anonimus-animals/anonimus-animals:latest

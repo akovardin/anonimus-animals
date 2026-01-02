@@ -1,0 +1,15 @@
+### list
+GET http://127.0.0.1:8000/animals
+
+### add
+POST http://127.0.0.1:8000/animals
+Content-Type: application/json
+
+### update
+
+PUT http://127.0.0.1:8000/animals
+Content-Type: application/json
+
+{
+    "id":27
+}
