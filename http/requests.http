@@ -1,9 +1,10 @@
 ### list
 # GET http://127.0.0.1:8000/animals
-GET http://127.0.0.1:8888/animals
+GET https://animals.kodikapusta.ru/animals
 
 ### add
-POST http://127.0.0.1:8000/animals
+# POST http://127.0.0.1:8000/animals
+POST https://animals.kodikapusta.ru/animals
 Content-Type: application/json
 
 ### update

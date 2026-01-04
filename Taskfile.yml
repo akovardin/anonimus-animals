@@ -3,21 +3,43 @@
 version: '3'
 
 vars:
-  GREETING: Hello, World!
-  SERVICE_NAME: anonimus-animals
+  SERVICE: anonimus-animals
+  SERVER: kovardin.ru
+  NETWORK: production
 
 tasks:
+  serve:
+    cmds:
+      - scp ./deploy/nginx/animals.kodikapusta.ru {{ .SERVER }}:/etc/nginx/sites-available/
+      - sup {{ .NETWORK }} nginx
+
+  letsencrypt:
+    cmds:
+      - sup {{ .NETWORK }} letsencrypt
+
   docker-build:
     cmds:
-      - docker build -t registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest -f Dockerfile .
+      - docker build --platform linux/amd64 -t registry.gitflic.ru/project/kovardin/{{ .SERVICE }}/{{ .SERVICE }}:latest -f Dockerfile .
 
   docker-publish:
     cmds:
-      - docker push registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
+      - docker push registry.gitflic.ru/project/kovardin/{{ .SERVICE }}/{{ .SERVICE }}:latest
 
   docker-run:
     cmds:
-      - docker run -d -v /Users/artem/projects/anonimus-animals/data:/app/data -p 8888:8000 registry.gitflic.ru/project/kovardin/{{ .SERVICE_NAME }}/{{ .SERVICE_NAME }}:latest
+      - docker run -d -v /Users/artem/projects/anonimus-animals/data:/app/data -p 8888:8000 registry.gitflic.ru/project/kovardin/{{ .SERVICE }}/{{ .SERVICE }}:latest
+
+  docker-serve:
+    cmds:
+      - sup {{ .NETWORK }} docker-pull
+      - sup {{ .NETWORK }} docker-stop
+      - sup {{ .NETWORK }} docker-start
+
+  deploy:
+    cmds:
+      - task: docker-build
+      - task: docker-publish
+      - task: docker-serve
 
   git-push:
     cmds:
