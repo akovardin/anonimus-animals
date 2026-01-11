@@ -45,3 +45,4 @@ tasks:
     cmds:
       - git push origin master
       - git push gitflic master
+      - git push gitverse master

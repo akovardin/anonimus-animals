@@ -9,9 +9,9 @@ Content-Type: application/json
 
 ### update
 
-PUT http://127.0.0.1:8000/animals
+PUT https://animals.kodikapusta.ru/animals
 Content-Type: application/json
 
 {
-    "id":27
+    "id":65
 }

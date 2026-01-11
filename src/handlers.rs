@@ -26,7 +26,7 @@ pub struct UpdateRequest {
     pub id: i64
 }
 
-pub async fn update(State(state): State<AppState>, Json(json): Json<UpdateRequest>,) -> impl IntoResponse {
+pub async fn update(State(state): State<AppState>, Json(json): Json<UpdateRequest>) -> impl IntoResponse {
     let res = sqlx::query("UPDATE animals SET updated_at = $1 WHERE id = $2")
         .bind(Utc::now())
         .bind(json.id)
